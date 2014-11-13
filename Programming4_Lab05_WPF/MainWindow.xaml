@@ -1,0 +1,339 @@
+﻿<Window x:Class="Programming4_Lab05_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:System;assembly=mscorlib"
+        xmlns:w="clr-namespace:Programming4_Lab05_WPF"
+        xmlns:c="comment"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="c"
+        xmlns:con="http://schemas.kent.boogaart.com/converters"
+        Title="Conway's Game of Life in WPF" Height="340" Width="300" >
+    <Window.Resources>
+        <Style TargetType="{x:Type Rectangle}">
+            <Style.Triggers>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>17</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="Black" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>16</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="DarkBlue" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>15</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="DarkBlue" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>14</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="DarkBlue" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>13</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="DarkBlue" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>12</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="DarkBlue" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>11</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="DarkBlue" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>10</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="DarkBlue" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>9</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="DarkBlue" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>8</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="Blue" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>7</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="Blue" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>6</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="Blue" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>5</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="Blue" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>4</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="LightBlue" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>3</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="LightBlue" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>2</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="LightBlue" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>1</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="LightBlue" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <my:Int32>0</my:Int32>
+                    </Trigger.Value>
+                    <Trigger.Setters>
+                        <Setter Property="Fill" Value="White" />
+                        <Setter Property="Margin" Value="1,1,1,1" />
+                        <!--<EventSetter Event="MouseDown" Handler="rectangleClicked" />-->
+                    </Trigger.Setters>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <!-- main menu -->
+        <Menu Grid.Row="0" Grid.ColumnSpan="2" Name="mainMenu">
+            <MenuItem Header="Game">
+                <MenuItem Header="About" />
+                <MenuItem Header="Exit" />
+            </MenuItem>
+            <MenuItem Header="Pace">
+                <MenuItem Header="Slow" />
+                <MenuItem Header="Moderate" />
+                <MenuItem Header="Fast" />
+            </MenuItem>
+            <MenuItem Header="Threads">
+                <MenuItem Header="1" IsCheckable="True">
+                    <MenuItem.IsChecked>
+                        <Binding ElementName="currentThreads" Path="Text">
+                            <Binding.Converter>
+                                <con:MapConverter>
+                                    <con:Mapping To="True">
+                                        <con:Mapping.From>
+                                            <my:String>1</my:String>
+                                        </con:Mapping.From>
+                                    </con:Mapping>
+                                    <con:Mapping To="False">
+                                        <con:Mapping.From>
+                                            <my:String>2</my:String>
+                                        </con:Mapping.From>
+                                    </con:Mapping>
+                                </con:MapConverter>
+                            </Binding.Converter>
+                        </Binding>
+                    </MenuItem.IsChecked>
+                </MenuItem>
+                <MenuItem Header="2" IsCheckable="True" >
+                    <MenuItem.IsChecked>
+                        <Binding ElementName="currentThreads" Path="Text">
+                            <Binding.Converter>
+                                <con:MapConverter>
+                                    <con:Mapping To="False">
+                                        <con:Mapping.From>
+                                            <my:String>1</my:String>
+                                        </con:Mapping.From>
+                                    </con:Mapping>
+                                    <con:Mapping To="True">
+                                        <con:Mapping.From>
+                                            <my:String>2</my:String>
+                                        </con:Mapping.From>
+                                    </con:Mapping>
+                                </con:MapConverter>
+                            </Binding.Converter>
+                        </Binding>
+                    </MenuItem.IsChecked>
+                </MenuItem>
+                <!--<MenuItem Header="4" IsCheckable="True">
+          <MenuItem.IsChecked>
+            <Binding ElementName="currentThreads" Path="Text">
+              <Binding.Converter>
+                <con:MapConverter>
+                  <con:Mapping To="True">
+                    <con:Mapping.From>
+                      <my:String>4</my:String>
+                    </con:Mapping.From>
+                  </con:Mapping>
+                </con:MapConverter>
+              </Binding.Converter>
+            </Binding>
+          </MenuItem.IsChecked>
+        </MenuItem>
+        <MenuItem Header="8" IsCheckable="True">
+          <MenuItem.IsChecked>
+            <Binding ElementName="currentThreads" Path="Text">
+              <Binding.Converter>
+                <con:MapConverter>
+                  <con:Mapping To="True">
+                    <con:Mapping.From>
+                      <my:String>8</my:String>
+                    </con:Mapping.From>
+                  </con:Mapping>
+                  <con:Mapping To="False">
+                    <con:Mapping.From>
+                      <my:String>4</my:String>
+                    </con:Mapping.From>
+                  </con:Mapping>
+                </con:MapConverter>
+              </Binding.Converter>
+            </Binding>
+          </MenuItem.IsChecked>
+        </MenuItem>-->
+            </MenuItem>
+        </Menu>
+        <!-- parameters on the left of the screen -->
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+            <TextBlock Name="currentPace" Text="1" />
+            <TextBlock Name="currentThreads" Text="2" />
+            <CheckBox Name="classVersion" Content="class version" Margin="0,0,8,0"
+                VerticalAlignment="Center" IsChecked="False" />
+            <TextBlock Name="boardSizeText" Width="20" TextAlignment="Right"
+                  VerticalAlignment="Center" Margin="0,0,8,0">
+        <TextBlock.Text>
+          <Binding ElementName="boardSize" Path="Value">
+            <Binding.Converter>
+              <con:TypeConverter TargetType="{x:Type my:Int32}" />
+            </Binding.Converter>
+          </Binding>
+        </TextBlock.Text>
+            </TextBlock>
+            <Slider Grid.Column="1" Name="boardSize" Minimum="3"
+         Value="{Binding BoardSize}" Maximum="50"
+         SmallChange="1" Orientation="Vertical" />
+        </StackPanel>
+        <!-- board of the Conway's Game of Life -->
+        <ItemsControl Grid.Row="1" Grid.Column="1"
+                  ItemsSource="{Binding Rectangles}" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Background="Beige">
+                    </UniformGrid>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <!-- parameters on the bottom of the screen -->
+        <StackPanel  Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <CheckBox Name="enableLife" Content="life happens" Margin="0,0,8,0"
+                VerticalAlignment="Center" IsChecked="{Binding LifeEnabled}">
+                <CheckBox.Visibility>
+                    <Binding ElementName="classVersion" Path="IsChecked">
+                        <Binding.Converter>
+                            <con:MapConverter>
+                                <con:Mapping To="{x:Static Visibility.Collapsed}">
+                                    <con:Mapping.From>
+                                        <my:Boolean>
+                                            True
+                                        </my:Boolean>
+                                    </con:Mapping.From>
+                                </con:Mapping>
+                                <con:Mapping To="{x:Static Visibility.Visible}">
+                                    <con:Mapping.From>
+                                        <my:Boolean>
+                                            False
+                                        </my:Boolean>
+                                    </con:Mapping.From>
+                                </con:Mapping>
+                            </con:MapConverter>
+                        </Binding.Converter>
+                    </Binding>
+                </CheckBox.Visibility>
+            </CheckBox>
+        </StackPanel>
+    </Grid>
+</Window>
