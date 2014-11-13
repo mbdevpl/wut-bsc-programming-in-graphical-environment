@@ -1,0 +1,152 @@
+﻿<Window x:Class="Programming4_Lab04pl_WPF.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:c="comment"
+    mc:Ignorable="c"
+    Name="TicTacToe" Title="Tic Tac Toe" Height="460" MinHeight="460" Width="700" MinWidth="700">
+    <!--mc:Ignorable="d"-->
+  <Window.Resources>
+    <Style TargetType="Ellipse">
+      <Style.Triggers>
+        <Trigger Property="IsMouseOver" Value="True">
+          <Trigger.Setters>
+            <Setter Property="Opacity" Value="0.5"></Setter>
+          </Trigger.Setters>
+        </Trigger>
+        
+      </Style.Triggers>
+      <!--<Style.Triggers>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter">
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="0:0:0.5"
+                               From="1"
+                               To="0.5">
+                
+              </DoubleAnimation>
+            </Storyboard>
+          </BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseLeave">
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="0:0:0.5"
+                               From="0.5"
+                               To="1">
+
+              </DoubleAnimation>
+            </Storyboard>
+          </BeginStoryboard>
+        </EventTrigger>
+      </Style.Triggers>-->
+      
+      <!--<Setter Property="Opacity" Value="0.5" />-->
+    </Style>
+    <!--<Style x:Key="opaque" TargetType="Ellipse">
+      <Setter Property="Opacity" Value="1.0" />
+    </Style>-->
+  </Window.Resources>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="90" />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="150" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="150" />
+    </Grid.ColumnDefinitions>
+    <Rectangle Grid.ColumnSpan="3">
+      <Rectangle.Fill>
+        <LinearGradientBrush SpreadMethod="Repeat" StartPoint="1,0">
+          <GradientStop Color="#FF099009" />
+          <GradientStop Color="#FF099009" Offset="0.25" />
+          <GradientStop Color="#FFC7C7C7" Offset="0.75" />
+        </LinearGradientBrush>
+      </Rectangle.Fill>
+    </Rectangle>
+    <Label Content="WPF LAB" Name="labelWpfLab" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+        Grid.Column="1" FontSize="32" HorizontalAlignment="Left" VerticalAlignment="Top">
+      <Label.FontWeight>Bold</Label.FontWeight>
+      <Label.RenderTransformOrigin>0.4,0.5</Label.RenderTransformOrigin>
+      <Label.RenderTransform>
+        <RotateTransform Angle="-10" />
+      </Label.RenderTransform>
+      <Label.Effect>
+        <DropShadowEffect Color="Gray" />
+      </Label.Effect>
+    </Label>
+    <Menu Grid.ColumnSpan="3" Name="menuMain" VerticalAlignment="Bottom" >
+      <Menu.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+          <GradientStop Color="#FFC7C7C7" />
+          <GradientStop Color="#FFC7C7C7" Offset="0.5" />
+          <GradientStop Color="#FF099009" Offset="0.9" />
+        </LinearGradientBrush>
+      </Menu.Background>
+      <MenuItem Header="_Game">
+        <MenuItem Name="optionNew" Header="_New" Background="LightGreen" Click="optionNew_Click" />
+        <MenuItem Name="optionExit" Header="_Exit" Background="LightSeaGreen" Click="optionExit_Click" />
+      </MenuItem>
+    </Menu>
+    <StackPanel Margin="5,0,0,0" Name="stackPanelLeft" Grid.Row="1">
+      <GroupBox Header="Board" Height="81" Name="groupBoxBoard" Margin="0,0,0,5">
+        <Grid Margin="5,0,0,0">
+          <Grid.Resources>
+            <!--<x:ArrayExtension x:Key="e" Type="{x:Type Point}">
+              <x:StaticExtension Member="" />
+              <x:StaticExtension Member="5,5" />
+              <x:StaticExtension Member="5,5" />
+            </x:ArrayExtension>-->
+          </Grid.Resources>
+          <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+          </Grid.RowDefinitions>
+          <RadioButton Content="3 x 3" Height="16" Name="radio3x3" />
+          <RadioButton Content="5 x 5" Height="16" Name="radio5x5" Grid.Row="1" />
+          <RadioButton Content="9 x 9" Height="16" Name="radio9x9" Grid.Row="2" />
+        </Grid>
+      </GroupBox>
+      <Button Content="Confirm" Name="buttonConfirm" Width="75" Margin="0,0,0,10" HorizontalAlignment="Right"
+          Click="buttonConfirm_Click" />
+      <Label Height="40" Name="textBlockPlayer1">
+        <StackPanel Orientation="Horizontal">
+          <Rectangle Width="30" Height="30" Fill="Red" Stroke="Gray" StrokeThickness="3" />
+          <Label Name="player1NameLabel" Content="X"/>
+        </StackPanel>
+      </Label>
+      <Label Height="40" Name="player2NameBlock">
+        <StackPanel Orientation="Horizontal">
+          <Rectangle Width="30" Height="30" Fill="Blue" Stroke="Gray" StrokeThickness="3" />
+          <Label Name="player2NameLabel" Content="Y"/>
+        </StackPanel>
+      </Label>
+      <Label Content="Player 1:" Name="labelPlayer1" />
+      <TextBox Name="player1Name" Text="Red" />
+      <Label Content="Player 2:" Name="labelPlayer2" />
+      <TextBox Name="player2Name" Text="Blue" Margin="0,0,0,10" />
+      <Button Content="Change" Name="buttonChangeNames" Width="75" HorizontalAlignment="Right" Click="buttonChangeNames_Click" />
+    </StackPanel>
+    <Grid Margin="5,5,5,5" Grid.Column="1" Grid.Row="1" Name="gridBoard">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition />
+        <ColumnDefinition />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+    </Grid>
+    <StackPanel Margin="0,0,5,0" Grid.Column="2" Grid.Row="1" Name="stackPanel2" Grid.RowSpan="2">
+      <Label Content="Best scores:" Height="28" Name="labelBestScores" />
+      <ListView Name="listView1" Height="249" />
+    </StackPanel>
+    <!--<RotateTransform></RotateTransform>-->
+  </Grid>
+</Window>
