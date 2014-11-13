@@ -1,0 +1,11 @@
+*.suo
+*.csproj.user
+*.vcxproj.user
+Thumbs.db
+
+/Debug
+/Release
+/*/bin
+/*/obj
+/*/Debug
+/*/Release
