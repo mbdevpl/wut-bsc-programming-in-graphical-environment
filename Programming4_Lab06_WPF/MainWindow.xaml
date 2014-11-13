@@ -1,0 +1,202 @@
+﻿<Window x:Class="Programming4_Lab06_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:w="clr-namespace:Programming4_Lab06_WPF"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:con="http://schemas.kent.boogaart.com/converters"
+        xmlns:ex="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+        xmlns:c="comment"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="c"
+        Title="Fancy animations in WPF" Height="400" Width="300">
+    <Window.Resources>
+        <!-- general text blocks style -->
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin"
+              Value="2,2,2,2" />
+            <Setter Property="Background"
+              Value="LightBlue" />
+        </Style>
+        <!-- general buttons style -->
+        <Style TargetType="Button">
+            <Setter Property="Margin"
+              Value="2,2,2,2" />
+        </Style>
+        <!-- orientation buttons style -->
+        <Style x:Key="orientButtons" TargetType="Button">
+            <Setter Property="Margin"
+              Value="1,1,1,1" />
+            <Style.Triggers>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <sys:Boolean>
+                            True
+                        </sys:Boolean>
+                    </Trigger.Value>
+                    <Setter Property="Opacity" Value="0.5" />
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <RotateTransform Angle="180"
+                               CenterX="{Binding RelativeSource={RelativeSource
+                FindAncestor, AncestorType={x:Type Button}, AncestorLevel=1},
+                Mode=OneWay, Path=ActualWidth,
+                Converter={con:ExpressionConverter {}{0} / 2}}"
+                            CenterY="{Binding RelativeSource={RelativeSource
+                FindAncestor, AncestorType={x:Type Button}, AncestorLevel=1}, 
+                Mode=OneWay, Path=ActualHeight,
+                Converter={con:ExpressionConverter {}{0} / 2}}" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="Tag">
+                    <Trigger.Value>
+                        <sys:Boolean>
+                            False
+                        </sys:Boolean>
+                    </Trigger.Value>
+                    <Setter Property="Opacity" Value="1" />
+                    <Setter Property="RenderTransform" Value="Identity" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!-- panels contents controls -->
+        <Style x:Key="sizeControl" TargetType="TextBlock">
+            <Setter Property="Margin" Value="2,2,2,2" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="ex:DecimalUpDown">
+            <Setter Property="Margin" Value="1,1,1,1" />
+        </Style>
+    </Window.Resources>
+    <w:AnimatedGrid>
+        <w:AnimatedGrid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </w:AnimatedGrid.RowDefinitions>
+        <w:AnimatedGrid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </w:AnimatedGrid.ColumnDefinitions>
+        <Slider Grid.ColumnSpan="2" Grid.Row="0"
+            Minimum="1" Maximum="1000"
+            Value="{Binding ElementName=topPanel, Path=Duration}"
+            Name="marginSlider">
+        </Slider>
+        <!-- top panel -->
+        <w:AnimatedWrapPanel Grid.ColumnSpan="2" Grid.Row="1"
+                   x:Name="topPanel" Duration="500"
+      >
+            <!-- InternalMargin="15"-->
+        </w:AnimatedWrapPanel>
+        <!-- orientation buttons -->
+        <Button Grid.Column="0" Grid.Row="2" Name="horiz"
+            Content="Horizontal orientation"
+            Style="{StaticResource orientButtons}"
+            Click="button_Click">
+            <Button.Tag>
+                <Binding ElementName="verti" Path="Tag" Mode="TwoWay">
+                    <Binding.Converter>
+                        <con:MapConverter>
+                            <con:Mapping>
+                                <con:Mapping.From>
+                                    <sys:Boolean>
+                                        True
+                                    </sys:Boolean>
+                                </con:Mapping.From>
+                                <con:Mapping.To>
+                                    <sys:Boolean>
+                                        False
+                                    </sys:Boolean>
+                                </con:Mapping.To>
+                            </con:Mapping>
+                            <con:Mapping>
+                                <con:Mapping.From>
+                                    <sys:Boolean>
+                                        False
+                                    </sys:Boolean>
+                                </con:Mapping.From>
+                                <con:Mapping.To>
+                                    <sys:Boolean>
+                                        True
+                                    </sys:Boolean>
+                                </con:Mapping.To>
+                            </con:Mapping>
+                        </con:MapConverter>
+                    </Binding.Converter>
+                </Binding>
+            </Button.Tag>
+        </Button>
+        <Button Grid.Column="1" Grid.Row="2" Name="verti"
+            Content="Vertical orientation"
+            Style="{StaticResource orientButtons}"
+            Click="button_Click">
+            <Button.Tag>
+                <sys:Boolean>
+                    False
+                </sys:Boolean>
+            </Button.Tag>
+
+        </Button>
+        <!-- bottom panel (IT HAS TO BE HERE) -->
+        <w:AnimatedStackPanel Grid.ColumnSpan="2" Grid.Row="4"
+                          x:Name="bottomPanel" Duration="500">
+            <!--<Binding >
+                <Binding.Converter>
+                  <con:ConverterGroup>
+                    <con:FormatConverter FormatString="{}0,2,{0},2" />
+      <con:TypeConverter SourceType="{x:Type sys:String}"
+        TargetType="{x:Type Thickness}" />
+      </con:ConverterGroup>
+      </Binding.Converter>
+      </Binding>-->
+            <w:AnimatedStackPanel.Orientation>
+                <Binding ElementName="horiz" Path="Tag">
+                    <Binding.Converter>
+                        <con:MapConverter>
+                            <con:Mapping>
+                                <con:Mapping.From>
+                                    <sys:Boolean>
+                                        True
+                                    </sys:Boolean>
+                                </con:Mapping.From>
+                                <con:Mapping.To>
+                                    <Orientation>Horizontal</Orientation>
+                                </con:Mapping.To>
+                            </con:Mapping>
+                            <con:Mapping>
+                                <con:Mapping.From>
+                                    <sys:Boolean>
+                                        False
+                                    </sys:Boolean>
+                                </con:Mapping.From>
+                                <con:Mapping.To>
+                                    <Orientation>Vertical</Orientation>
+                                </con:Mapping.To>
+                            </con:Mapping>
+                        </con:MapConverter>
+                    </Binding.Converter>
+                </Binding>
+            </w:AnimatedStackPanel.Orientation>
+        </w:AnimatedStackPanel>
+        <!-- element count increase/decrease -->
+        <StackPanel Grid.Column="0" Grid.Row="3"
+                Orientation="Horizontal">
+            <TextBlock Text="Top panel:"
+                 Style="{StaticResource sizeControl}" />
+            <ex:DecimalUpDown Name="topPanelSize" Minimum="0"
+                        Value="0" Maximum="100"
+                        ValueChanged="topPanelElemsCount_ValueChanged" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="3"
+                Orientation="Horizontal">
+            <TextBlock Text="Bottom panel:"
+                 Style="{StaticResource sizeControl}" />
+            <ex:DecimalUpDown Name="bottomPanelSize" Minimum="0"
+                        Value="0" Maximum="52"
+                        ValueChanged="bottomPanelElemsCount_ValueChanged" />
+        </StackPanel>
+    </w:AnimatedGrid>
+</Window>
