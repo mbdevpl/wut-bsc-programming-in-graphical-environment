@@ -2,7 +2,16 @@
 *.csproj.user
 *.vcxproj.user
 Thumbs.db
+*.cache
+*.vsp
+*.v11.suo
+*.vshost.exe
+*.vshost.exe.config
+*.vshost.exe.manifest
+*.opensdf
+*.sdf
 
+/ipch
 /Debug
 /Release
 /*/bin
